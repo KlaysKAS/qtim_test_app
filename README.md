@@ -1,16 +1,15 @@
-# qtim_test_app
+## Задача
+Нужно реализовать функциональность экранов: список новостей и просмотр одной новости
 
-A new Flutter project.
+## Функционал:
+При открытии страницы с новостями данные загружаются из подготовленного мокового репозитория  
+На экране списка новостей должны показываться:
+- [ ] Карусель с Featured новостями (горизонтальный скролл)
+- [ ] Список Latest news c последними новостями (вертикальный скролл)
+- [ ] AppBar с кнопкой Mark all read
+- [ ] Кнопка Mark all read при нажатии "читает все записи" помечает все записи, как прочтенные
+- [ ] При нажатии на новость из Featured или Latest news списка должна открыться страница с подробностями новости (Страница одной новости)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Требования и примечания:
+Логика экранов должна быть обязательно организована при помощи BLoC.
