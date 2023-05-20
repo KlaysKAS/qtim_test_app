@@ -1,3 +1,3 @@
 sealed class FeaturedNewsEvent {}
 
-class LoadNews extends FeaturedNewsEvent {}
+class LoadFeaturedNews extends FeaturedNewsEvent {}

@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtim_test_app/locator.dart';
+import 'package:qtim_test_app/state/featured_vm/news_bloc.dart';
+import 'package:qtim_test_app/state/featured_vm/news_events.dart';
+import 'package:qtim_test_app/state/news_vm/news_bloc.dart';
+import 'package:qtim_test_app/state/news_vm/news_events.dart';
+import 'package:qtim_test_app/ui/news_page.dart';
 
 void main() {
   Locator.instance().init();
@@ -7,9 +13,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,11 +29,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Center(
-        child: Text(
-          'Test app for QTIM',
-          style: TextStyle(decoration: TextDecoration.none),
-        ),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (_) => FeaturedNewsBloc(Locator.instance().newsRepo)
+                ..add(LoadFeaturedNews())),
+          BlocProvider(
+              create: (_) =>
+                  NewsBloc(Locator.instance().newsRepo)..add(LoadNews())),
+        ],
+        child: const NewsPage(),
       ),
     );
   }
