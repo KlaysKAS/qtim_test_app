@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtim_test_app/state/news_vm/news_bloc.dart';
 import 'package:qtim_test_app/state/news_vm/news_events.dart';
 import 'package:qtim_test_app/state/news_vm/states/news_state.dart';
+import 'package:qtim_test_app/state/read_vm/read_bloc.dart';
+import 'package:qtim_test_app/state/read_vm/read_events.dart';
 import 'package:qtim_test_app/ui/list/news_widget.dart';
 import 'package:qtim_test_app/ui/single_news_page.dart';
 
@@ -39,13 +41,16 @@ class NewsList extends StatelessWidget {
               return ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
+                    onTap: () {
+                      context.read<ReadBloc>().add(
+                            ReadOneEvent(news[index].id),
+                          );
+                      Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => SingleNewsPage(
                           news: news[index],
                         ),
-                      ),
-                    ),
+                      ));
+                    },
                     child: NewsWidget(newsItem: news[index]),
                   );
                 },

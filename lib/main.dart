@@ -5,6 +5,7 @@ import 'package:qtim_test_app/state/featured_vm/news_bloc.dart';
 import 'package:qtim_test_app/state/featured_vm/news_events.dart';
 import 'package:qtim_test_app/state/news_vm/news_bloc.dart';
 import 'package:qtim_test_app/state/news_vm/news_events.dart';
+import 'package:qtim_test_app/state/read_vm/read_bloc.dart';
 import 'package:qtim_test_app/ui/news_page.dart';
 
 void main() {
@@ -32,11 +33,14 @@ class _MyAppState extends State<MyApp> {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (_) => FeaturedNewsBloc(Locator.instance().newsRepo)
-                ..add(LoadFeaturedNews())),
+            create: (_) => FeaturedNewsBloc(Locator.instance().newsRepo)
+              ..add(LoadFeaturedNews()),
+          ),
           BlocProvider(
-              create: (_) =>
-                  NewsBloc(Locator.instance().newsRepo)..add(LoadNews())),
+            create: (_) =>
+                NewsBloc(Locator.instance().newsRepo)..add(LoadNews()),
+          ),
+          BlocProvider(create: (_) => ReadBloc()),
         ],
         child: const NewsPage(),
       ),
