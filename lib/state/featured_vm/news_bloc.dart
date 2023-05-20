@@ -9,11 +9,11 @@ class FeaturedNewsBloc extends Bloc<FeaturedNewsEvent, FeaturedNewsState> {
 
   FeaturedNewsBloc(this._repository)
       : super(const FeaturedNewsState.loading()) {
-    on<LoadNews>(_loadNews);
+    on<LoadFeaturedNews>(_loadNews);
   }
 
   Future<void> _loadNews(
-      LoadNews event, Emitter<FeaturedNewsState> emit) async {
+      LoadFeaturedNews event, Emitter<FeaturedNewsState> emit) async {
     emit(const FeaturedNewsState.loading());
     try {
       final news = await _repository.getFeaturedNews();
