@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qtim_test_app/models/news.dart';
+import 'package:qtim_test_app/ui/read_mark.dart';
 
 class NewsWidget extends StatelessWidget {
   final News newsItem;
@@ -34,6 +35,10 @@ class NewsWidget extends StatelessWidget {
                         fontSize: 30,
                       ),
                 ),
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: ReadMark(id: newsItem.id),
               ),
             ],
           ),

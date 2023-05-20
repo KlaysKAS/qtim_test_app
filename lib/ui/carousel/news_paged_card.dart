@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qtim_test_app/models/news.dart';
+import 'package:qtim_test_app/ui/read_mark.dart';
 
 class NewsPagedCard extends StatefulWidget {
   final PageController controller;
@@ -85,6 +86,10 @@ class _NewsPagedCardState extends State<NewsPagedCard> {
               );
             },
           ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: ReadMark(id: widget.newsInfo.id),
         ),
       ],
     );

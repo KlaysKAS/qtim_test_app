@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtim_test_app/state/featured_vm/news_bloc.dart';
 import 'package:qtim_test_app/state/featured_vm/news_events.dart';
 import 'package:qtim_test_app/state/featured_vm/states/featured_news_state.dart';
+import 'package:qtim_test_app/state/read_vm/read_bloc.dart';
+import 'package:qtim_test_app/state/read_vm/read_events.dart';
 import 'package:qtim_test_app/ui/carousel/news_paged_card.dart';
 import 'package:qtim_test_app/ui/single_news_page.dart';
 
@@ -54,13 +56,18 @@ class _NewsCarouselState extends State<NewsCarousel> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => SingleNewsPage(
-                      news: news[index],
+                onTap: () {
+                  context.read<ReadBloc>().add(
+                        ReadOneEvent(news[index].id),
+                      );
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => SingleNewsPage(
+                        news: news[index],
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
                 child: NewsPagedCard(
                   controller: _pageController,
                   newsInfo: news[index],
