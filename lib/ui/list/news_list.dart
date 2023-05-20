@@ -4,6 +4,7 @@ import 'package:qtim_test_app/state/news_vm/news_bloc.dart';
 import 'package:qtim_test_app/state/news_vm/news_events.dart';
 import 'package:qtim_test_app/state/news_vm/states/news_state.dart';
 import 'package:qtim_test_app/ui/list/news_widget.dart';
+import 'package:qtim_test_app/ui/single_news_page.dart';
 
 class NewsList extends StatelessWidget {
   const NewsList({super.key});
@@ -37,7 +38,16 @@ class NewsList extends StatelessWidget {
             success: (news) {
               return ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return NewsWidget(newsItem: news[index]);
+                  return InkWell(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => SingleNewsPage(
+                          news: news[index],
+                        ),
+                      ),
+                    ),
+                    child: NewsWidget(newsItem: news[index]),
+                  );
                 },
                 itemCount: news.length,
               );

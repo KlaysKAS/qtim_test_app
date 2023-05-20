@@ -4,6 +4,7 @@ import 'package:qtim_test_app/state/featured_vm/news_bloc.dart';
 import 'package:qtim_test_app/state/featured_vm/news_events.dart';
 import 'package:qtim_test_app/state/featured_vm/states/featured_news_state.dart';
 import 'package:qtim_test_app/ui/carousel/news_paged_card.dart';
+import 'package:qtim_test_app/ui/single_news_page.dart';
 
 class NewsCarousel extends StatefulWidget {
   const NewsCarousel({super.key});
@@ -52,10 +53,19 @@ class _NewsCarouselState extends State<NewsCarousel> {
             controller: _pageController,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              return NewsPagedCard(
-                controller: _pageController,
-                newsInfo: news[index],
-                index: index,
+              return InkWell(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => SingleNewsPage(
+                      news: news[index],
+                    ),
+                  ),
+                ),
+                child: NewsPagedCard(
+                  controller: _pageController,
+                  newsInfo: news[index],
+                  index: index,
+                ),
               );
             },
             itemCount: news.length,
