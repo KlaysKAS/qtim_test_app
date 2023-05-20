@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:qtim_test_app/locator.dart';
 
 void main() {
+  Locator.instance().init();
+
   runApp(const MyApp());
 }
 
